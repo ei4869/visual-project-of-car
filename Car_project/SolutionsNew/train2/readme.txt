@@ -1,0 +1,5 @@
+input:250*250
+END_EPOCH:200
+WEIGHT:200epoch
+FPS:23-25左右
+
