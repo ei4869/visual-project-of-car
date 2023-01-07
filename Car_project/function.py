@@ -2,7 +2,11 @@ import cv2
 import numpy as np
 import os
 import time
+<<<<<<< HEAD
 #import serial
+=======
+
+>>>>>>> 9296419693a83064c26af53d697aa6bfd7a9cda5
 WIDTH = 640
 HEIGHT = 480
 
@@ -11,7 +15,11 @@ DIRECTION = 'R'
 capture = cv2.VideoCapture(0)
 capture.set(cv2.CAP_PROP_FRAME_WIDTH, WIDTH)
 capture.set(cv2.CAP_PROP_FRAME_HEIGHT, HEIGHT)
+<<<<<<< HEAD
 #capture.set(cv2.CAP_PROP_FOURCC, cv2.VideoWriter_fourcc('M', 'J', 'P', 'G'))
+=======
+capture.set(cv2.CAP_PROP_FOURCC, cv2.VideoWriter_fourcc('M', 'J', 'P', 'G'))
+>>>>>>> 9296419693a83064c26af53d697aa6bfd7a9cda5
 
 COLOR_DICT = {
                 'highred':[np.array([156,43,46]),np.array([180,255,255])],
@@ -21,6 +29,7 @@ COLOR_DICT = {
                 'yellow':[np.array([26,43,46]),np.array([34,255,255])],
                 'orange':[np.array([11,43,46]),np.array([25,255,255])]}
 COLORS = ['highred','lowred','green','blue','yellow','orange']
+<<<<<<< HEAD
 
 def nms(dets, nmsThreshold):
     """
@@ -168,6 +177,9 @@ class FastestDet:
         self.net.setInput(blob)
         pred = self.net.forward(self.net.getUnconnectedOutLayersNames())[0][0]
         return self.post_process(frame, pred)
+=======
+ 
+>>>>>>> 9296419693a83064c26af53d697aa6bfd7a9cda5
 #识别交通灯颜色    
 class ColorRecognize():
     def __init__(self):
@@ -253,7 +265,11 @@ class Findroute():
             kernel = np.ones((3,3),np.uint8)
             Routeregion = cv2.morphologyEx(Routeregion, cv2.MORPH_OPEN, kernel,iterations=1)
             Routeregion = cv2.morphologyEx(Routeregion, cv2.MORPH_CLOSE, kernel,iterations=1)
+<<<<<<< HEAD
             
+=======
+
+>>>>>>> 9296419693a83064c26af53d697aa6bfd7a9cda5
             #寻找ROI中黑线轮廓
             contours = cv2.findContours(Routeregion, cv2.RETR_TREE,cv2.CHAIN_APPROX_SIMPLE)[0]
             delta = np.array([[cropy1,cropx1]]) #变换坐标的参数(裁切后的图的坐标转化为原灰度图坐标)
@@ -286,6 +302,7 @@ class Findroute():
                 if direction <= -150:
                     direction = -150
                 #ser.write('#{}#\r\n'.format(int(direction)).encode('utf-8'))
+<<<<<<< HEAD
                 #print('左转')
             #print('juli',direction)
             
@@ -302,15 +319,28 @@ class Findroute():
                 direction = 'R'
             self.direction = direction
             
+=======
+                print('左转')
+            print('juli',direction)
+            cv2.rectangle(img,(cropy1,cropx1),(cropy2,cropx2),(0,255,0),3)
+            cv2.imshow('1',img) 
+            time.sleep(0.04)
+>>>>>>> 9296419693a83064c26af53d697aa6bfd7a9cda5
         except Exception:
             pass
         cv2.rectangle(img,(cropy1,cropx1),(cropy2,cropx2),(0,255,0),3)
         cv2.imshow('1',img) 
 #############################################################################################
 
+<<<<<<< HEAD
 deep = FastestDet(drawOutput=True)
 #B = ColorRecognize()
 C = Findroute(direct='R')
+=======
+# B = ColorRecognize()
+#C = Findroute()
+A.train()
+>>>>>>> 9296419693a83064c26af53d697aa6bfd7a9cda5
 while True:
     ret, frame = capture.read()
     C.start(frame)
